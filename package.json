@@ -1,0 +1,30 @@
+{
+  "name": "quiz-react-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "cra-template": "1.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "sass": "^1.42.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
