@@ -12,7 +12,8 @@ class App extends React.Component{
         currentQustion : 0,
         currentChoice: 0,
         score: 0,
-        isChecked: ''
+        isChecked: '',
+        answersLeft:7
     }
 
     handleRadio = (e) => {
@@ -45,7 +46,8 @@ class App extends React.Component{
         }else{
             this.setState((prev) => ({
                 currentQustion: prev.currentQustion + 1,
-                currentChoice: prev.currentQustion + 1
+                currentChoice: prev.currentQustion + 1,
+                answersLeft: prev.answersLeft - 1
             }))
         }
     
@@ -54,14 +56,17 @@ class App extends React.Component{
     render(){ 
         const {quiz} = this.state.QuizData;
         return(
-            <div className ='page-wrap'>  
+            <div className ='page-wrap' style = {{textAlign : 'center'}}>  
+             {
+             this.state.currentQustion === 7? null: <span className = "questions-left">{this.state.answersLeft} Answers Left</span>
+         }
          <div className = "quiz-container">
           {this.state.currentQustion !== quiz.length?<QuizQuestion question = {quiz[this.state.currentQustion].question}/>:null}
-           {this.state.currentChoice !== quiz.length? <Choices choice = {quiz[this.state.currentChoice].choices} test = {this.handleRadio}/> : null} 
+           {this.state.currentChoice != quiz.length? <Choices choice = {quiz[this.state.currentChoice].choices} test = {this.handleRadio}/> : null} 
             {this.state.currentQustion === 7?null:<NextQuestionBtn props = {this.handleClick} id = {this.state.isChecked}/>}
          </div>
          {
-             this.state.currentQustion === 7? <Results score = {this.state.score} questions = {quiz.length}/> : console.log(2222)
+             this.state.currentQustion === 7? <Results score = {this.state.score} questions = {quiz.length}/> : null
          }
                 </div>
         )

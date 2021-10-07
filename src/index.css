@@ -8,4 +8,6 @@ html,body{
     font-size: 18px;
     background-color: #CBF1F5;
     font-family: 'Ubuntu', sans-serif;
+    overflow: hidden;
+    height: 100vh;
 }

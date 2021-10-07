@@ -1,0 +1,14 @@
+.quiz-container{
+  text-align: center;
+  transform: translate(0,10rem);
+  -webkit-transform: translate(0,10rem);
+  -moz-transform: translate(0,10rem);
+  -ms-transform: translate(0,10rem);
+  -o-transform: translate(0,10rem);
+}
+
+.questions-left{
+  position: absolute;
+  right: 58%;
+  top: 20%;
+}
