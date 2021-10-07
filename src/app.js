@@ -3,6 +3,7 @@ import './app.scss';
 import { Choices } from './components/choices/choices.components';
 import { NextQuestionBtn } from './components/nextQuestionBtn/btn.components';
 import { QuizQuestion } from './components/quiz-questions.components';
+import { ResetQuiz } from './components/reset-quiz/reset-quiz-components';
 import { Results } from './components/results/results.components';
 import QuizData from './quiz-data/quiz-data';
 
@@ -28,14 +29,14 @@ class App extends React.Component{
         }
 
         if(parseInt(value) === quiz[this.state.currentQustion].answer){
-            this.setState({
-                score: this.state.currentChoice + 1
-            })
+            this.setState(prevScore => ({
+                score: prevScore.score + 1
+            }))
         }else{
                 
-            this.setState({
-                score: this.state.currentChoice - 0
-            })
+            this.setState(prevScore => ({
+                score: prevScore.currentChoice + 0
+            }))
         }
     }
 
@@ -53,8 +54,19 @@ class App extends React.Component{
     
     }
 
+    resetQuiz= () => {
+        this.setState({
+            currentQustion : 0,
+            currentChoice: 0,
+            score: 0,
+        isChecked: '',
+        answersLeft:7
+        })
+    }
+
     render(){ 
         const {quiz} = this.state.QuizData;
+
         return(
             <div className ='page-wrap' style = {{textAlign : 'center'}}>  
              {
@@ -66,7 +78,12 @@ class App extends React.Component{
             {this.state.currentQustion === 7?null:<NextQuestionBtn props = {this.handleClick} id = {this.state.isChecked}/>}
          </div>
          {
-             this.state.currentQustion === 7? <Results score = {this.state.score} questions = {quiz.length}/> : null
+             this.state.currentQustion === 7? (
+                 <div className = "reset-quiz">
+                     <Results score = {this.state.score} questions = {quiz.length}/>
+                     <ResetQuiz props = {this.resetQuiz} />
+                 </div>
+             ) : null
          }
                 </div>
         )
